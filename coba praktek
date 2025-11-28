@@ -1,0 +1,83 @@
+# Data Daftar belanja
+
+print("                      MR.DIY                  ")
+print("-----------------------------------------------------")
+print("Kode  Nama Barang   Harga")
+print("9069104 BAKING BRUSH 360 15,500")
+print("9076652 PAINT BRUSH 360 3,500")
+print("-----------------------------------------------------")
+
+#Input data pembelian
+Hicard=input("Masukkan nomor HICARD anda: ")
+tanggal_pembelian=input("Masukkan tanggal pembelian (DD/MM/YYYY): ")
+banyak_barang = int(input("Masukkan jumlah jenis barang yang dibeli: "))
+
+#Inisialisasi list
+kode_barang_list=[]
+nama_barang_list=[]
+jumlah_barang_list=[]
+harga_list=[]
+
+#Input data pembelian
+for i in range(banyak_barang):
+    print(f"\nMasukkan data barang ke-{i+1}:")
+    kode_input=input("Kode Barang: ")
+    jumlah_input=int(input("Jumlah Barang: "))
+
+    # Mencari data barang berdasarkan kode
+    nama_item = "Barang tidak ditemukan"
+    harga_item = 0
+
+    if kode_input == "9069104":
+        nama_item ="BAKING BRUSH 360"
+        harga_item = 15500
+    elif kode_input == "9076652":
+        nama_item ="PAINT BRUSH 360"
+        harga_item = 3500
+
+    kode_barang_list.append(kode_input)
+    nama_barang_list.append(nama_item)
+    jumlah_barang_list.append(jumlah_input)
+    harga_list.append(harga_item)
+
+
+print("\n               MR.DIY                              ")
+print("-----------------------------------------------------")
+print(" Kode  Nama Barang          Harga      Banyak   Jumlah Harga   ")
+print("-----------------------------------------------------")
+
+total_belanja=0
+for i in range(banyak_barang):
+    jumlah_harga_item = harga_list[i] * jumlah_barang_list[i]
+    print(f"{kode_barang_list[i]:<6} {nama_barang_list[i]:<20} {harga_list[i]:<10,.0f} {jumlah_barang_list[i]:<8} {jumlah_harga_item:<12,.0f}")
+    total_belanja += jumlah_harga_item
+
+print("-----------------------------------------------------")
+
+#HITUNG PAJAK DAN TOTAL
+pajak=total_belanja * 0.1
+
+print(f"Total Belanja     : Rp.{total_belanja:,.0f}")
+print(f"Pajak (10%)      : Rp.{pajak:,.0f}")
+
+#Hitungn uang bayar dan kembalian
+uang_bayar = float(input("\nMasukkan uang bayar: Rp."))
+kembalian=uang_bayar - total_belanja - pajak
+
+    #CETAK STRUK PEMBELIAN
+print("\n================ STRUK PEMBELIAN ================")
+print(f"Nomor HICARD    : {Hicard}")
+print(f"Tanggal         : {tanggal_pembelian}")
+print(f"Jumlah items    : {banyak_barang}")
+print("-----------------------------------------------------")
+print(" Kode   Nama Barang         Harga     Banyak   Jumlah Harga")
+print("-----------------------------------------------------")
+for i in range(banyak_barang):
+    jumlah_harga_item = harga_list[i] * jumlah_barang_list[i]
+    print(f"{kode_barang_list[i]:<6} {nama_barang_list[i]:<20} {harga_list[i]:<10,.0f} {jumlah_barang_list[i]:<8} {jumlah_harga_item:<12,.0f}")
+print("-----------------------------------------------------")
+print(f"TOTAL Belanja   : Rp.{total_belanja:,.0f}")
+print(f"PPN (10%)       : Rp.{pajak:,.0f}")
+print(f"Tunai           : Rp.{uang_bayar:,.0f}")
+print(f"Kembali         : Rp.{kembalian:,.0f}")
+print("==================================================")
